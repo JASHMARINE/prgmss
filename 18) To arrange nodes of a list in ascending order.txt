@@ -1,0 +1,115 @@
+18) To arrange nodes of a list in ascending order
+#include<iostream.h>
+#include<conio.h>
+void printlist();
+struct node
+{
+int val;
+node *next;
+};
+node *head=NULL;
+node *newNode;
+int length = 0;
+void insertBeg(int item)
+{
+newNode = new node;
+newNode->val = item;
+newNode->next = NULL;
+if( head == NULL)
+{
+head = newNode;
+}
+else
+{
+newNode->next = head;
+head = newNode;
+}
+length++;
+}
+void insertEnd(int item)
+{
+newNode = new node;
+newNode ->val = item;
+newNode->next = NULL;
+if( head == NULL)
+{
+head = newNode;
+}
+else
+{
+node *temp = head;
+while(temp->next!=NULL)
+{ temp = temp->next; }
+temp->next = newNode;
+}
+length++;
+}
+void insertInBtw(int item,int pos)
+{
+if(pos==1)
+insertBeg(item);
+else
+{
+node *p1 = head;
+node *p2 = head->next;
+newNode = new node;
+newNode->val = item;
+newNode->next = NULL;
+for(int i=1;i<pos-1;i++)
+{
+p1 = p2;
+p2 = p2->next;
+}
+p1->next = newNode;
+newNode->next = p2;
+length++;
+}
+}
+void EnterAndArrange()
+{
+int num,v,j;
+node *temp;
+cout<<"\nHow many node do you want to create: ";
+cin>>num;
+cout<<"\nEnter node values:";
+for(int i =0 ; i < num ; i++)
+{
+cin>>v;
+if(i == 0)
+{
+insertBeg(v) ;
+continue;
+}
+for( temp = head ,j = 0; temp != NULL ; temp =
+temp->next , j++ )
+{
+if( temp->val > v)
+{
+insertInBtw(v,j+1);
+break;
+}
+}
+if(temp == NULL && j==i)
+{
+insertEnd(v);
+}
+}
+}
+void printlist()
+{
+node *temp = head;
+while(temp->next != NULL )
+{
+cout<<temp->val<<" ";
+temp = temp->next;
+}
+cout<<temp->val;
+cout<<"\nTotal length="<<length;
+}
+void main()
+{
+clrscr();
+EnterAndArrange();
+cout<<"\nYour nodes in ascending order:";
+printlist();
+getch();

@@ -1,0 +1,101 @@
+16) To implement circular queue
+#include<iostream.h>
+#include<conio.h>
+int size,cqueue[33],front=-1,rear=-1;
+void cqinsert()
+{
+int v;
+if(front == (rear+1)%size || (rear == size-1 &&
+front == 0))
+{
+cout<<"\nCircular queue is full";
+return;
+}
+else
+{
+cout<<"\nEnter value: ";
+cin>>v;
+if(front == -1)
+{
+front++;
+rear++;
+cqueue[rear] = v ;
+}
+else
+{
+rear = (rear+1)%size;
+cqueue[rear] = v;
+}
+}
+}
+int cqdelete()
+{
+int v = cqueue[front];
+if(front == -1)
+{
+cout<<"\nQueue empty";
+return NULL;
+}
+if(front == rear)
+{
+front = -1;
+rear = -1;
+}
+else
+front = (front+1)%size;
+return v;
+}
+void print()
+{
+if(rear == -1)
+{
+cout<<"\nCircular queue empty";
+return;
+}
+if( rear >= front )
+{
+for(int i=front;i<=rear;i++)
+cout<<cqueue[i]<<" ";
+}
+else
+{
+for(int i=0;i<=rear;i++)
+cout<<cqueue[i]<<" ";
+for(i=front;i<size;i++)
+cout<<cqueue[i]<<" ";
+}
+}
+void main()
+{
+int o,v;
+char c;
+clrscr();
+cout<<"\nEnter the limit for circular queue:";
+cin>>size;
+do{
+clrscr();
+cout<<"#### CIRCULAR QUEUE ####";
+cout<<"\n1)Add";
+cout<<"\n2)Remove";
+cout<<"\n3)View";
+cout<<"\n\nSelect an option=> ";
+cin>>o;
+switch(o)
+{
+case 1:
+cqinsert();
+break;
+case 2: v=cqdelete();
+if(v)
+cout<<"\n "<<v<<" has been removed from
+queue";
+break;
+case 3: cout<<"\nElements in queue: ";
+print();
+break;
+default: cout<<"\nInvalid option!";
+}
+cout<<"\n\nPress 'y' to continue: ";
+cin>>c;
+}while(c=='y');
+getch();

@@ -1,0 +1,97 @@
+21) To implement linked stack
+#include<iostream.h>
+#include<conio.h>
+struct node
+{
+int val;
+node *next;
+};
+node *top=NULL;
+node *newNode;
+int length = 0;
+void push(int item)
+{
+newNode = new node;
+newNode ->val = item;
+newNode ->next = NULL;
+if( top == NULL)
+{
+top = newNode;
+}
+else
+{
+newNode->next = top;
+top = newNode;
+}
+length++;
+}
+int pop()
+{
+node *temp=top;
+int v;
+if(top == NULL)
+{
+cout<<"\nList empty";
+return NULL;
+}
+else if(top->next == NULL)
+{
+top = NULL;
+}
+else{
+top = top->next;
+}
+v = temp->val;
+delete temp;
+length--;
+return v;
+}
+void printlist()
+{
+node *temp = top;
+if(top == NULL)
+{
+cout<<"\nEmpty list";
+return;
+}
+while(temp->next != NULL )
+{
+cout<<temp->val<<" ";
+temp = temp->next;
+}
+cout<<temp->val;
+cout<<"\nTotal length="<<length;
+}
+void main()
+{
+int o,v;
+char c;
+do{
+clrscr();
+cout<<"#### STACK ####";
+cout<<"\n1)Push";
+cout<<"\n2)Pop";
+cout<<"\n3)View";
+cout<<"\n\nSelect an option=> ";
+cin>>o;
+switch(o)
+{
+case 1: cout<<"\nEnter value:";
+cin>>v;
+push(v);
+break;
+case 2: v=pop();
+if(v)
+cout<<"\n "<<v<<" has been popped from
+stack";
+break;
+case 3: cout<<"\nElements in stack: ";
+printlist();
+break;
+default: cout<<"\nInvalid option!";
+}
+cout<<"\n\nPress 'y' to continue: ";
+cin>>c;
+}while(c=='y');
+getch();
+}

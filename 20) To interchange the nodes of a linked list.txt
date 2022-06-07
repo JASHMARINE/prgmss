@@ -1,0 +1,119 @@
+20) To interchange the nodes of a linked list
+#include<iostream.h>
+#include<conio.h>
+struct node
+{
+int val;
+node *next;
+};
+node *head=NULL;
+node *newNode;
+int length = 0;
+void insert(int item)
+{
+newNode = new node;
+newNode ->val = item;
+newNode->next = NULL;
+if( head == NULL)
+{
+head = newNode;
+}
+else
+{
+node *temp = head;
+while(temp->next!=NULL)
+{ temp = temp->next; }
+temp->next = newNode;
+}
+length++;
+}
+int swap(int pos1,int pos2)
+{
+pos1--;
+pos2--;
+if(pos1==pos2 || pos1<0 || pos2<0 || pos1>length
+|| pos2>length)
+{
+cout<<"\nRange error!,Swap failed";
+return 0;
+}
+else
+{
+int i;
+node *p1,*p2,*P1,*P2;
+for(i=0;i<=pos1;i++)
+{
+if(i==0)
+{
+p1=NULL;
+p2=head;
+}
+else
+{
+p1 = p2;
+p2 = p2->next;
+}
+}
+for(i=0;i<=pos2;i++)
+{
+if(i==0)
+{
+P1=NULL;
+P2=head;
+}
+else
+{
+P1 = P2;
+P2 = P2->next;
+}
+}
+if(p1 != NULL)
+p1->next = P2;
+else
+head = P2;
+if(P1 != NULL)
+P1->next = p2;
+else
+head = p2;
+node *temp = P2->next;
+P2->next = p2->next;
+p2->next = temp;
+return 1;
+}
+}
+void printlist()
+{
+node *temp = head;
+while(temp->next != NULL )
+{
+cout<<temp->val<<" ";
+temp = temp->next;
+}
+cout<<temp->val;
+cout<<"\nTotal length= "<<length;
+}
+void main()
+{
+char c;
+int v;
+do{
+clrscr();
+cout<<"\nEnter node value: ";
+cin>>v;
+insert(v);
+cout<<"\n\nDo you want to enter more
+elements(y/n): ";
+cin>>c;
+}while(c=='y');
+cout<<"\nThe elements you entered: ";
+printlist();
+cout<<"\n\nEnter swap positions : ";
+int a,b,r;
+cin>>a>>b;
+r = swap(a,b);
+if(r)
+{
+cout<<"\nList elements after swap: ";
+printlist();
+}
+getch();

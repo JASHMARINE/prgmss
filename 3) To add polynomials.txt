@@ -1,0 +1,64 @@
+3) To add polynomials
+#include<iostream.h>
+#include<conio.h>
+int i,j;
+class polynomial
+{
+int a[36],degree;
+public:
+void enter();
+void print();
+void add(polynomial,polynomial);
+};
+void polynomial::enter()
+{
+cout<<"\n\nEnter degree: ";
+cin>>degree;
+for(i=0;i<degree;i++)
+{
+cout<<"\nEnter term with power "<<i<<" :";
+cin>>a[i];
+}
+}
+void polynomial::print()
+{
+i=0;
+cout<<"\n"<<a[i]<<"x^"<<i;
+for(i=1;i<degree;i++)
+{
+cout<<" + "<<a[i]<<"x^"<<i;
+}
+}
+void polynomial::add(polynomial p1,polynomial p2)
+{
+if(p1.degree>p2.degree)
+{
+degree=p1.degree;
+for(i=0;i<p1.degree;i++)
+a[i]=p1.a[i];
+for(i=0;i<p2.degree;i++)
+a[i]+=p2.a[i] ;
+}
+else
+{
+degree=p2.degree;
+for(i=0;i<p2.degree;i++)
+a[i]=p2.a[i];
+for(i=0;i<p1.degree;i++)
+a[i]+=p1.a[i] ;
+}
+}
+void main()
+{ clrscr();
+polynomial p1,p2,p3;
+cout<<"\nFirst polynomial:";
+p1.enter();
+p1.print();
+cout<<"\n\nSecond polynomial:";
+p2.enter();
+p2.print();
+cout<<"\n\nSum of polynomials is :";
+p3.add(p1,p2);
+p3.print();
+getch();
+}

@@ -1,0 +1,94 @@
+22) To implement linked queue
+#include<iostream.h>
+#include<conio.h>
+struct node
+{
+int val;
+node *next;
+};
+node *front=NULL;
+node *rear=NULL;
+node *newNode;
+int length = 0;
+void add(int item)
+{
+newNode = new node;
+newNode ->val = item;
+newNode ->next = NULL;
+if( front == NULL)
+{
+front = newNode;
+rear = newNode;
+}
+else
+{
+rear->next = newNode;
+rear = newNode ;
+}
+length++;
+}
+int remove()
+{
+int v;
+if(front == NULL)
+{
+cout<<"\nEmpty queue";
+return NULL;
+}
+else{
+node *temp = front;
+v = temp->val;
+front= front->next;
+delete temp;
+length--;
+return v;
+}
+}
+void printlist()
+{
+node *temp = front;
+if(front == NULL)
+{
+cout<<"\n( Empty )";
+return;
+}
+while(temp!=NULL)
+{
+cout<<temp->val<<" ";
+temp = temp->next;
+}
+cout<<"\nTotal length="<<length;
+}
+void main()
+{
+int o,v;
+char c;
+do{
+clrscr();
+cout<<"#### QUEUE ####";
+cout<<"\n1)Add";
+cout<<"\n2)Remove";
+cout<<"\n3)View";
+cout<<"\n\nSelect an option=> ";
+cin>>o;
+switch(o)
+{
+case 1: cout<<"\nEnter value:";
+cin>>v;
+add(v);
+break;
+case 2: v=remove();
+if(v)
+cout<<"\n "<<v<<" has been removed from
+queue";
+break;
+case 3: cout<<"\nElements in queue: ";
+printlist();
+break;
+default: cout<<"\nInvalid option!";
+}
+cout<<"\n\nPress 'y' to continue: ";
+cin>>c;
+}while(c=='y');
+getch();
+}

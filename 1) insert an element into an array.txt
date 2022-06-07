@@ -1,0 +1,45 @@
+1) To insert an element into an array
+#include<iostream.h>
+#include<conio.h>
+int i;
+class insert
+{
+int size,a[33],pos,ele;
+public:
+void oper();
+};
+void insert::oper()
+{
+cout<<"\nEnter size:";
+cin>>size;
+cout<<"\nEnter array:";
+for(i=0;i<size;i++)
+cin>>a[i];
+cout<<"\nEnter insert element and position:";
+cin>>ele>>pos;
+int t,p=pos-1,s=size;
+cout<<"\n"<<p;
+if(p>=0 && p<=size)
+{
+while(s>p)
+{
+a[s]=a[s-1];
+s--;
+}
+a[p]=ele;
+cout<<"\nNew array:\n";
+for(i=0;i<size+1;i++)
+{
+cout<<a[i]<<" ";
+}
+}
+else
+cout<<"\nInvalid range";
+}
+void main()
+{
+clrscr();
+insert o1;
+o1.oper();
+getch();
+}

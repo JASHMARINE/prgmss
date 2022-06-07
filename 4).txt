@@ -1,0 +1,32 @@
+#include<iostream.h>
+#include<conio.h>
+int i;
+class linear
+{
+int a[22],l,ele;
+public:
+void search();
+};
+void linear::search()
+{
+cout<<"\nEnter limit:";
+cin>>l;
+cout<<"\nEnter array elements:";
+for(i=0;i<l;i++)
+cin>>a[i];
+cout<<"\nEnter search element:";
+cin>>ele;
+for(i=0;i<l;i++)
+if(a[i]==ele)
+break;
+if(i==l)
+cout<<"\nElement not found";
+else
+cout<<"\nElement found in "<<i+1<<" position";
+}
+void main()
+{
+clrscr();
+linear o1;
+o1.search();
+getch();

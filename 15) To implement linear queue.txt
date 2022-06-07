@@ -1,0 +1,92 @@
+15) To implement linear queue
+#include<iostream.h>
+#include<conio.h>
+int queue[33],size,front = -1,rear = -1;
+void Insert()
+{
+int data;
+if(rear == size-1)
+{
+cout<<"\nQueue full";
+return;
+}
+else if(rear == -1)
+{
+cout<<"\nEnter value:";
+cin>>data;
+front ++;
+rear ++;
+queue[rear] = data;
+}
+else
+{
+cout<<"\nEnter value:";
+cin>>data;
+rear++;
+queue[rear] = data;
+}
+}
+int Delete()
+{
+int v = queue[front];
+if(front == -1)
+{
+cout<<"\nQueue empty";
+return NULL;
+}
+else if(front == rear)
+{
+front = -1;
+rear = -1;
+return v;
+}
+else
+{
+front ++ ;
+return v;
+}
+}
+void print()
+{
+if(rear == -1)
+{
+cout<<"\nQueue empty";
+return;
+}
+for(int i=front;i<=rear;i++)
+cout<<queue[i]<<" ";
+}
+void main()
+{
+int o,v;
+char c;
+clrscr();
+cout<<"\nEnter the limit for queue:";
+cin>>size;
+do{
+clrscr();
+cout<<"#### QUEUE ####";
+cout<<"\n1)Add";
+cout<<"\n2)Remove";
+cout<<"\n3)View";
+cout<<"\n\nSelect an option=> ";
+cin>>o;
+switch(o)
+{
+case 1:
+Insert();
+break;
+case 2: v=Delete();
+if(v)
+cout<<"\n "<<v<<" has been removed from
+queue";
+break;
+case 3: cout<<"\nElements in queue: ";
+print();
+break;
+default: cout<<"\nInvalid option!";
+}
+cout<<"\n\nPress 'y' to continue: ";
+cin>>c;
+}while(c=='y');
+getch();

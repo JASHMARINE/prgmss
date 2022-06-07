@@ -1,0 +1,91 @@
+19) To concatenate two linked list
+#include<iostream.h>
+#include<conio.h>
+struct node
+{
+int val;
+node *next;
+};
+class Llist
+{
+node *head;
+node *rear;
+node *newNode;
+int length ;
+public:
+Llist()
+{
+head = NULL;
+rear = NULL;
+}
+void insert(int);
+void ccat(Llist,Llist);
+void printlist();
+}l1,l2,l3;
+void Llist::insert(int item)
+{
+newNode = new node;
+newNode ->val = item;
+newNode->next = NULL;
+if( head == NULL)
+{
+head = newNode;
+rear = newNode;
+}
+else
+{
+rear->next = newNode;
+rear = newNode;
+}
+length++;
+}
+void Llist::ccat(Llist l1,Llist l2)
+{
+head = l1.head;
+rear = l1.rear;
+rear->next = l2.head;
+rear = l2.rear;
+length = l1.length + l2.length;
+}
+void Llist::printlist()
+{
+node *temp = head;
+while(temp->next != NULL )
+{
+cout<<temp->val<<" ";
+temp = temp->next;
+}
+cout<<temp->val<<endl;
+cout<<"\nTotal length="<<length<<endl;
+}
+void main()
+{
+clrscr();
+int i,num,v;
+cout<<"\nHow many node do you want to create for
+list1: ";
+cin>>num;
+cout<<"\nEnter node values:";
+for( i =0 ; i < num ; i++)
+{
+cin>>v;
+l1.insert(v);
+}
+cout<<"\nHow many node do you want to create for
+list2: ";
+cin>>num;
+cout<<"\nEnter node values:";
+for( i =0 ; i < num ; i++)
+{
+cin>>v;
+l2.insert(v);
+}
+cout<<"\nList 1: ";
+l1.printlist();
+cout<<"\nList 2: ";
+l2.printlist();
+cout<<"\nConcatenated list: ";
+l3.ccat(l1,l2);
+l3.printlist();
+getch();
+}

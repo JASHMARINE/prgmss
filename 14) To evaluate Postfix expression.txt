@@ -1,0 +1,124 @@
+14) To evaluate Postfix expression
+#include<iostream.h>
+#include<conio.h>
+#include<process.h>
+#include<stdio.h>
+struct node
+{
+int val;
+node *next;
+};
+node *top=NULL;
+node *newNode;
+void push(int item)
+{
+newNode = new node;
+newNode ->val = item;
+newNode ->next = NULL;
+if( top == NULL)
+{
+top = newNode;
+}
+else
+{
+newNode->next = top;
+top = newNode;
+}
+}
+int pop()
+{
+node *temp=top;
+int v;
+if( top != NULL)
+v = top->val;
+if(top == NULL)
+{
+cout<<"\nList empty";
+return NULL;
+}
+else if(top->next == NULL)
+{
+top = NULL;
+}
+else{
+top = top->next;
+}
+delete temp;
+return v;
+}
+int charToint(char c)
+{
+if(c == '0')
+return 0;
+if(c == '1')
+return 1;
+if(c == '2')
+return 2;
+if(c == '3')
+return 3;
+if(c == '4')
+return 4;
+if(c == '5')
+return 5;
+if(c == '6')
+return 6;
+if(c == '7')
+return 7;
+if(c == '8')
+return 8;
+if(c == '9')
+return 9;
+}
+void postfixeval(char str[])
+{
+for(int num=0,i=0;str[i]!='\0';i++)
+{
+if((str[i]>='0' && str[i]<='9'))
+{
+while(1)
+{
+num = charToint(str[i]) + num * 10;
+i++;
+if(str[i]==' ')
+{
+cout<<"\nPushed=> "<<num;
+push(num);
+num=0;
+break;
+}
+}
+}
+else if(str[i] == '+' || str[i] == '-' || str[i]
+== '/' || str[i] == '*')
+{
+int v2 = pop();
+cout<<"\nPopped=> "<<v2;
+int r,v1 = pop();
+cout<<"\nPopped=> "<<v1;
+if( str[i] == '+') r=v1+v2;
+if( str[i] == '-') r=v1-v2;
+if( str[i] == '*') r=v1*v2;
+if( str[i] == '/') r=v1/v2;
+cout<<"\nPushed=> "<<r;
+push(r);
+}
+else if(str[i] == ' ')
+continue;
+else
+{
+cout<<"\nError!!..invalid string literal found,
+exiting...";
+getch();
+exit(0);
+}
+}
+cout<<"\nTh final result is : "<<pop();
+}
+void main()
+{
+clrscr();
+char str[33];
+cout<<"\nEnter postfix expression:";
+gets(str);
+postfixeval(str);
+getch();

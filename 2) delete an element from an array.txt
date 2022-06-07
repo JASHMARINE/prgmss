@@ -1,0 +1,47 @@
+2) To delete an element from an array
+#include<iostream.h>
+#include<conio.h>
+class Del
+{
+int arr[50],size,i,pos,del;
+public:
+void arrange();
+};
+void Del::arrange()
+{
+cout<<"\n enter the array size:";
+cin>>size;
+cout<<"\n enter the elements:";
+for(i=0;i<size;i++)
+{
+cin>>arr[i];
+}
+cout<<"\n enter the element to delete:";
+cin>>del;
+for(i=0;i<size;i++)
+{
+if(arr[i]==del)
+{
+pos=i;
+break;
+}
+}
+if(i==size)
+cout<<"\nElement not found";
+else
+{
+for(i=pos;i<size;i++)
+arr[pos]=arr[pos+1];
+size--;
+cout<<"\nNew array:";
+for(i=0;i<size;i++)
+cout<<"\n"<<arr[i];
+}
+}
+void main()
+{
+Del d;
+clrscr();
+d.arrange();
+getch();
+}

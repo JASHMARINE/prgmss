@@ -1,0 +1,49 @@
+5)To implement Binary Search
+#include<iostream.h>
+#include<conio.h>
+int i,j;
+class binary
+{
+int a[12],end;
+public:
+void enter();
+void search();
+};
+void binary::enter()
+{
+cout<<"\nEnter search limit:";
+cin>>end;
+cout<<"\nEnter array in ascending order:";
+for(i=0;i<end;i++)
+cin>>a[i];
+}
+void binary::search()
+{
+int mid,beg=0,flag=0;
+int ele;
+cout<<"\nEnter search element:";
+cin>>ele;
+while(beg<=end)
+{
+mid=(beg+end)/2;
+if(a[mid]==ele)
+{
+cout<<"\nElement found in position "<<mid+1;
+flag=1;
+break;
+}
+else if(a[mid]<ele)
+beg=mid+1;
+else
+end=mid-1;
+}
+if(flag==0)
+cout<<"\nElement not found";
+}
+void main()
+{
+clrscr();
+binary B;
+B.enter();
+B.search();
+getch();

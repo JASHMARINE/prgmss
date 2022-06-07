@@ -1,0 +1,43 @@
+6) To implement selection sort
+#include<iostream.h>
+#include<conio.h>
+int i,j;
+class selection
+{
+int a[12],end;
+public:
+void enter();
+void sort();
+};
+void selection::enter()
+{
+cout<<"\nEnter limit:";
+cin>>end;
+cout<<"\nEnter array:";
+for(i=0;i<end;i++)
+cin>>a[i];
+}
+void selection::sort()
+{
+for(i=0;i<end;i++)
+for(j=i+1;j<end;j++)
+{
+if(a[i]>a[j])
+{
+int t=a[i];
+a[i]=a[j];
+a[j]=t;
+}
+}
+cout<<"\nArray in ascending order:";
+for(i=0;i<end;i++)
+cout<<" "<<a[i];
+}
+void main()
+{
+clrscr();
+selection s;
+s.enter();
+s.sort();
+getch();
+}

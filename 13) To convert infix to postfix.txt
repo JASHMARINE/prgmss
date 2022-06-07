@@ -1,0 +1,83 @@
+13) To convert infix to postfix
+#include<iostream.h>
+#include<conio.h>
+#include<string.h>
+#include<stdio.h>
+class stack
+{
+int str[75],top,max;
+public:
+stack(){ top = -1;
+max = 75; }
+// void print();
+void push(char ele)
+{
+top++;
+str[top]=ele;
+}
+void pop()
+{
+top--;
+}
+void infixToPostfix(char*) ;
+}S;
+int prec(char c) {
+if(c == '^')
+return 3;
+else if(c == '/' || c=='*')
+return 2;
+else if(c == '+' || c == '-')
+return 1;
+else
+return -1;
+}
+void stack::infixToPostfix(char s[]) {
+char result[33];
+int j = 0;
+int l = strlen(s);
+for(int i = 0; i < l ; i++) {
+char c = s[i];
+if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ||
+(c >= '0' && c <= '9'))
+{
+result[j] = c;
+j++;
+}
+else if(c == '(')
+push('(');
+else if(c == ')') {
+while(str[top] != '(')
+{
+result[j]= str[top];
+j++;
+pop();
+}
+pop();
+}
+else {
+while(top!=-1 && prec(s[i]) <= prec(str[top])) {
+result[j]= str[top];
+j++;
+pop();
+}
+push(c);
+}
+}
+while(top!=-1) {
+result[j] = str[top];
+j++;
+pop();
+}
+for(i=0;i<j;i++)
+cout<<result[i];
+}
+void main()
+{
+clrscr();
+char exp[33];
+cout<<"\nEnter infix expression: ";
+gets(exp);
+cout<<"\nIt's postfix expression: ";
+S.infixToPostfix(exp);
+getch();
+}
